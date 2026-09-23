@@ -7,8 +7,9 @@ import { GitHubIcon, LinkedInIcon } from "@/components/sites/un.ms-9e73fc9e/pile
 const SITE_BASE = "/sites/un.ms-9e73fc9e/pile-7b2b2b3f";
 const LINKEDIN_URL = "https://www.linkedin.com/";
 const GITHUB_URL = "https://github.com/";
+const LOOP_FADE_SECONDS = 0.6;
 
-function SmoothVideo({ src }: { src: string }) {
+function BackgroundVideo({ src }: { src: string }) {
   const aRef = useRef<HTMLVideoElement>(null);
   const bRef = useRef<HTMLVideoElement>(null);
 
@@ -18,42 +19,88 @@ function SmoothVideo({ src }: { src: string }) {
 
     const a = aRef.current;
     const b = bRef.current;
-    if (!a || !b) return;
+    if (!a || !b) {
+      return () => {
+        document.documentElement.classList.remove("is-pile-brochure");
+        document.body.classList.remove("is-pile-brochure");
+      };
+    }
 
-    let active: "a" | "b" = "a";
-    const fadeDuration = 0.3;
+    let active = a;
+    let idle = b;
+    let fading = false;
+    let idleReady = false;
+    let cancelled = false;
+    let disarm = () => {};
 
-    a.play().catch(() => {});
-
-    const handleTimeUpdate = () => {
-      const current = active === "a" ? a : b;
-      const next = active === "a" ? b : a;
-      const remaining = current.duration - current.currentTime;
-
-      if (remaining < fadeDuration && next.paused) {
-        next.currentTime = 0;
-        next.play().catch(() => {});
-
-        current.style.transition = `opacity ${fadeDuration}s ease-in`;
-        next.style.transition = "none";
-        next.style.opacity = "1";
-        current.style.opacity = "0";
-
-        setTimeout(() => {
-          current.pause();
-          active = active === "a" ? "b" : "a";
-        }, fadeDuration * 1000);
-      }
+    const arm = (video: HTMLVideoElement) => {
+      disarm();
+      idleReady = false;
+      const markReady = () => {
+        if (video === idle && video.readyState >= 2 && video.currentTime < 0.05) {
+          idleReady = true;
+        }
+      };
+      video.addEventListener("seeked", markReady);
+      video.addEventListener("loadeddata", markReady);
+      disarm = () => {
+        video.removeEventListener("seeked", markReady);
+        video.removeEventListener("loadeddata", markReady);
+      };
+      const seekToStart = () => {
+        if (video.currentTime < 0.05 && video.readyState >= 2) {
+          markReady();
+          return;
+        }
+        video.currentTime = 0;
+      };
+      if (video.readyState >= 1) seekToStart();
+      else video.addEventListener("loadedmetadata", seekToStart, { once: true });
     };
 
-    a.addEventListener("timeupdate", handleTimeUpdate);
-    b.addEventListener("timeupdate", handleTimeUpdate);
+    const beginFade = () => {
+      if (cancelled || fading || !idleReady) return;
+      fading = true;
+      idle.play().catch(() => {});
+      idle.style.transition = `opacity ${LOOP_FADE_SECONDS}s linear`;
+      active.style.transition = `opacity ${LOOP_FADE_SECONDS}s linear`;
+      idle.style.opacity = "1";
+      active.style.opacity = "0";
+
+      window.setTimeout(() => {
+        if (cancelled) return;
+        active.pause();
+        active.style.transition = "none";
+        active.style.opacity = "0";
+        const finished = active;
+        active = idle;
+        idle = finished;
+        fading = false;
+        arm(idle);
+      }, LOOP_FADE_SECONDS * 1000);
+    };
+
+    arm(idle);
+    a.play().catch(() => {});
+
+    let raf = 0;
+    const tick = () => {
+      raf = requestAnimationFrame(tick);
+      if (cancelled || fading || !Number.isFinite(active.duration)) return;
+      const remaining = active.duration - active.currentTime;
+      if (remaining <= LOOP_FADE_SECONDS + 0.2 && idle.paused && idleReady) {
+        idle.play().catch(() => {});
+      }
+      if (remaining <= LOOP_FADE_SECONDS) beginFade();
+    };
+    raf = requestAnimationFrame(tick);
 
     return () => {
+      cancelled = true;
+      disarm();
+      cancelAnimationFrame(raf);
       document.documentElement.classList.remove("is-pile-brochure");
       document.body.classList.remove("is-pile-brochure");
-      a.removeEventListener("timeupdate", handleTimeUpdate);
-      b.removeEventListener("timeupdate", handleTimeUpdate);
     };
   }, []);
 
@@ -64,6 +111,7 @@ function SmoothVideo({ src }: { src: string }) {
         src={src}
         muted
         playsInline
+        preload="auto"
         className="absolute inset-0 h-full w-full object-cover"
         style={{ opacity: 1 }}
       />
@@ -72,6 +120,7 @@ function SmoothVideo({ src }: { src: string }) {
         src={src}
         muted
         playsInline
+        preload="auto"
         className="absolute inset-0 h-full w-full object-cover"
         style={{ opacity: 0 }}
       />
@@ -84,7 +133,7 @@ export default function Home() {
   return (
     <>
       {/* Fixed video background - z-index 0 */}
-      <SmoothVideo src={`${SITE_BASE}/sky.mp4`} />
+      <BackgroundVideo src={`${SITE_BASE}/sky.mp4`} />
 
       {/* Fixed cover overlay - bottom landscape */}
       <div
@@ -113,8 +162,8 @@ export default function Home() {
         {/* Navigation */}
         {/* Hero */}
         <section
-          className="relative mx-auto max-w-[250px] text-center"
-          style={{ scrollSnapAlign: "start", marginTop: 144, marginBottom: 144 }}
+          className="relative z-[70] mx-auto flex min-h-dvh max-w-[250px] flex-col items-center justify-center pb-[18vh] text-center"
+          style={{ scrollSnapAlign: "start" }}
         >
           <Image
             src={`${SITE_BASE}/pile-logo.png`}
