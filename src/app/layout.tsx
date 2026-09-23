@@ -1,20 +1,39 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Website Clone",
-  description: "Pixel-perfect website clone",
+  title: "Pile / UNMS",
+  description: "Desktop app for reflective journaling. It's private, integrates with AI, and free.",
+  openGraph: {
+    title: "Pile",
+    description: "Desktop app for reflective journaling. It's private, integrates with AI, and free.",
+    url: "https://un.ms/pile",
+    siteName: "UNMS",
+    type: "website",
+    images: [
+      {
+        url: "https://un.ms/assets/pile/pile-logo.png",
+        width: 500,
+        height: 500,
+        alt: "Pile",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pile",
+    description: "Desktop app for reflective journaling. It's private, integrates with AI, and free.",
+    images: ["https://un.ms/assets/pile/pile-logo.png"],
+  },
+  icons: {
+    icon: "/sites/un.ms-9e73fc9e/pile-7b2b2b3f/pile-logo.png",
+  },
 };
 
 export default function RootLayout({
@@ -25,9 +44,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body>{children}</body>
     </html>
   );
 }

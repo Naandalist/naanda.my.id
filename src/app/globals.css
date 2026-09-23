@@ -7,7 +7,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -49,38 +49,51 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
+  --background: rgba(247, 250, 251);
+  --foreground: rgba(0, 0, 0, 0.85);
+  --card: rgba(247, 250, 251);
+  --card-foreground: rgba(0, 0, 0, 0.85);
+  --popover: rgba(247, 250, 251);
+  --popover-foreground: rgba(0, 0, 0, 0.85);
+  --primary: #e75900;
+  --primary-foreground: #ffffff;
+  --secondary: rgba(247, 250, 251);
+  --secondary-foreground: rgba(0, 0, 0, 0.85);
+  --muted: #f2f2f2;
+  --muted-foreground: rgba(0, 0, 0, 0.6);
+  --accent: #e75900;
+  --accent-foreground: #ffffff;
+  --destructive: #e64d4d;
+  --border: rgba(0, 0, 0, 0.25);
+  --input: rgba(0, 0, 0, 0.25);
+  --ring: #e75900;
+  --chart-1: #e75900;
+  --chart-2: #004491;
+  --chart-3: #92d2d8;
+  --chart-4: #ceebff;
+  --chart-5: #b14400;
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar: rgba(247, 250, 251);
+  --sidebar-foreground: rgba(0, 0, 0, 0.85);
+  --sidebar-primary: #e75900;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f2f2f2;
+  --sidebar-accent-foreground: rgba(0, 0, 0, 0.85);
+  --sidebar-border: rgba(0, 0, 0, 0.25);
+  --sidebar-ring: #e75900;
+
+  /* Pile brochure custom properties */
+  --pile-bg: rgba(247, 250, 251);
+  --pile-bg-secondary: #ceebff;
+  --pile-bg-tertiary: #92d2d8;
+  --pile-bg-translucent: rgba(0, 0, 0, 0.06);
+  --pile-bg-translucent-hover: rgba(0, 0, 0, 0.1);
+  --pile-text: rgba(0, 0, 0, 0.85);
+  --pile-text-secondary: rgba(0, 0, 0, 0.6);
+  --pile-primary: #e75900;
+  --pile-primary-hover: #b14400;
+  --pile-border: rgba(0, 0, 0, 0.25);
+  --pile-secondary: #004491;
 }
 
 .dark {
@@ -127,4 +140,16 @@
   html {
     @apply font-sans;
   }
+}
+
+html.is-pile-brochure {
+  scroll-behavior: smooth;
+}
+
+body.is-pile-brochure {
+  height: 100vh;
+  scroll-snap-type: y mandatory;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  background: url("/sites/un.ms-9e73fc9e/pile-7b2b2b3f/sky.png") center center / cover no-repeat fixed;
 }
