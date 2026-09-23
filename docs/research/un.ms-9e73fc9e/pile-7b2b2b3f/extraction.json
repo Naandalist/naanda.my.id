@@ -1,0 +1,573 @@
+{
+  "url": "https://un.ms/pile",
+  "title": "Pile",
+  "extractedAt": "2026-09-22T16:07:36.777Z",
+  "description": "Desktop app for reflective journaling. It's private, integrates with AI, and free.",
+  "framework": "Laravel + Livewire/Inertia (PHP backend, SPA-like frontend)",
+  "fonts": [
+    "InterVariable",
+    "Inter",
+    "sans-serif"
+  ],
+  "colors": {
+    "primary": "#e75900",
+    "primaryHover": "#b14400",
+    "background": "rgba(247, 250, 251)",
+    "backgroundSecondary": "#ceebff",
+    "backgroundTertiary": "#92d2d8",
+    "text": "rgba(0, 0, 0, .85)",
+    "textSecondary": "rgba(0, 0, 0, .6)",
+    "border": "rgba(0, 0, 0, .25)",
+    "secondary": "#004491",
+    "white": "#ffffff",
+    "navColor": "rgb(160, 172, 185)",
+    "loadingText": "rgb(119, 119, 119)",
+    "h2Color": "rgb(11, 11, 11)"
+  },
+  "cssVariables": {
+    "--background-color": "rgba(247, 250, 251)",
+    "--background-color-secondary": "#ceebff",
+    "--background-color-tertiary": "#92d2d8",
+    "--background-translucent": "rgba(0, 0, 0, .06)",
+    "--background-translucent-hover": "rgba(0, 0, 0, .1)",
+    "--text-color": "rgba(0, 0, 0, .85)",
+    "--text-color-secondary": "rgba(0, 0, 0, .6)",
+    "--error-text-color": "var(--color-destructive)",
+    "--purple-color": "var(--color-purple)",
+    "--yellow-color": "var(--color-yellow)",
+    "--red-color": "var(--color-red)",
+    "--green-color": "var(--color-green)",
+    "--blue-color": "var(--color-blue)",
+    "--primary-color": "#e75900",
+    "--primary-color-hover": "#b14400",
+    "--border-color": "rgba(0, 0, 0, .25)",
+    "--secondary-color": "#004491",
+    "--color-yellow": "#fcd34d",
+    "--color-purple": "purple",
+    "--color-red": "#d32f2f",
+    "--color-green": "#2e7d32",
+    "--color-blue": "#298dff",
+    "--color-primary-hover": "#c6950f",
+    "--color-1": "0 100% 63%",
+    "--color-2": "270 100% 63%",
+    "--color-3": "210 100% 63%",
+    "--color-4": "195 100% 63%",
+    "--color-5": "90 100% 63%",
+    "--color-background": "#fff",
+    "--color-foreground": "#0b0b0b",
+    "--color-muted": "#f2f2f2",
+    "--color-muted-foreground": "#626262",
+    "--color-primary-shadcn": "#005eff",
+    "--color-primary-foreground": "#fff",
+    "--color-secondary-shadcn": "#dedede",
+    "--color-secondary-foreground": "#4d4d4d",
+    "--color-accent": "#ffdc69",
+    "--color-accent-foreground": "#524418",
+    "--color-destructive": "#e64d4d",
+    "--color-destructive-foreground": "#fff",
+    "--color-border-shadcn": "#ddd",
+    "--color-ring": "#4d80e6",
+    "--color-success": "#4de64d",
+    "--sidebar-width": "250px",
+    "--nav-height": "52px",
+    "--radius": "1px"
+  },
+  "sections": [
+    {
+      "name": "loading",
+      "description": "Initial loading screen with 'Loading assets' text",
+      "styles": {
+        "display": "flex",
+        "justifyContent": "center",
+        "alignItems": "center",
+        "flexDirection": "column",
+        "height": "100vh",
+        "background": "rgb(255, 255, 255)",
+        "gap": "25px",
+        "position": "relative",
+        "zIndex": "100"
+      }
+    },
+    {
+      "name": "container",
+      "description": "Main container with sky background image, scroll snap",
+      "className": "_container_jprh5_45",
+      "styles": {
+        "display": "flex",
+        "flexDirection": "column",
+        "minHeight": "100vh",
+        "background": "url('/assets/pile/sky.png') center center / cover no-repeat fixed",
+        "position": "relative"
+      }
+    },
+    {
+      "name": "video-background",
+      "description": "Fixed fullscreen video background (sky.mp4)",
+      "styles": {
+        "position": "fixed",
+        "top": "0",
+        "left": "0",
+        "width": "100%",
+        "height": "100%",
+        "zIndex": "0",
+        "overflow": "hidden"
+      },
+      "video": {
+        "src": "/assets/pile/sky.mp4",
+        "playsinline": true,
+        "preload": "auto",
+        "loop": true,
+        "crossorigin": "anonymous",
+        "displayWidth": "100%",
+        "displayHeight": "100%",
+        "objectFit": "cover",
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "name": "cover",
+      "description": "Fixed bottom cover image (bg-clear.png) - landscape foreground at bottom",
+      "className": "_cover_jprh5_55",
+      "styles": {
+        "position": "fixed",
+        "bottom": "0",
+        "left": "0",
+        "width": "100%",
+        "height": "100%",
+        "maxHeight": "42%",
+        "background": "url('/assets/pile/bg-clear.png') center top / cover no-repeat",
+        "zIndex": "60",
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "name": "overlay",
+      "description": "Fixed overlay gradient from translucent white to transparent",
+      "className": "_overlay_jprh5_67",
+      "styles": {
+        "position": "fixed",
+        "pointerEvents": "none",
+        "top": "0",
+        "left": "0",
+        "width": "100%",
+        "height": "100%",
+        "background": "linear-gradient(rgba(247, 250, 251, 0.9) 20%, rgba(0, 0, 0, 0) 70%)"
+      }
+    },
+    {
+      "name": "navigation",
+      "description": "Top navigation bar with logo and GitHub link",
+      "styles": {
+        "display": "flex",
+        "justifyContent": "space-between",
+        "alignItems": "center",
+        "padding": "12px 17px",
+        "position": "relative",
+        "color": "rgb(160, 172, 185)",
+        "width": "100%",
+        "height": "49px"
+      },
+      "children": [
+        {
+          "name": "nav-left",
+          "description": "Logo area - curved rectangle shape",
+          "className": "_left_jprh5_84",
+          "styles": {
+            "display": "flex",
+            "justifyContent": "center",
+            "alignItems": "center"
+          },
+          "children": [
+            {
+              "name": "logo-shape",
+              "description": "Curved rectangle (36x22px) with semi-transparent bg",
+              "className": "_logo_jprh5_91",
+              "styles": {
+                "display": "flex",
+                "height": "22px",
+                "width": "36px",
+                "background": "rgba(0, 0, 0, 0.15)",
+                "borderRadius": "0px 90px 90px 0px"
+              }
+            }
+          ]
+        },
+        {
+          "name": "nav-right",
+          "description": "GitHub icon link",
+          "className": "_right_jprh5_99",
+          "styles": {
+            "display": "flex",
+            "justifyContent": "space-between",
+            "alignItems": "center",
+            "gap": "10px"
+          },
+          "children": [
+            {
+              "name": "github-link",
+              "description": "GitHub icon link to UdaraJay/Pile repo",
+              "href": "https://github.com/UdaraJay/Pile",
+              "target": "_blank",
+              "icon": "github-icon",
+              "styles": {
+                "display": "block",
+                "color": "rgba(0, 0, 0, 0.2)",
+                "opacity": "0.95"
+              },
+              "hoverStyles": {
+                "color": "var(--primary-color)"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "hero",
+      "description": "Main hero content area centered on page with logo, title, subtitle, and download buttons",
+      "className": "_main_jprh5_116",
+      "styles": {
+        "borderRadius": "17px",
+        "textAlign": "center",
+        "scrollSnapAlign": "start",
+        "position": "relative",
+        "zIndex": "10",
+        "margin": "10% auto"
+      },
+      "children": [
+        {
+          "name": "logo",
+          "description": "Pile logo icon (70x70)",
+          "className": "_logo_jprh5_91",
+          "asset": "pile-logo.png",
+          "styles": {
+            "height": "70px",
+            "width": "70px",
+            "margin": "0 auto",
+            "display": "block",
+            "overflow": "clip"
+          }
+        },
+        {
+          "name": "title",
+          "description": "H1 title 'Pile'",
+          "tag": "h1",
+          "text": "Pile",
+          "styles": {
+            "fontSize": "1.5em",
+            "fontWeight": "500",
+            "lineHeight": "36px",
+            "margin": "10px 0px 20px",
+            "textAlign": "center",
+            "color": "rgba(0, 0, 0, 0.85)",
+            "fontFamily": "InterVariable, Inter, sans-serif"
+          }
+        },
+        {
+          "name": "subtitle",
+          "description": "H2 subtitle description",
+          "tag": "h2",
+          "text": "Desktop app for reflective journaling. It's private, integrates with AI, and free.",
+          "styles": {
+            "margin": "0 auto",
+            "maxWidth": "250px",
+            "lineHeight": "1.5",
+            "fontSize": "1rem",
+            "fontWeight": "400",
+            "color": "rgb(11, 11, 11)",
+            "opacity": "0.8",
+            "fontFamily": "InterVariable, Inter, sans-serif"
+          }
+        },
+        {
+          "name": "downloads",
+          "description": "Download buttons area",
+          "className": "_downloads_jprh5_151",
+          "styles": {
+            "margin": "20px auto",
+            "textAlign": "center",
+            "maxWidth": "300px"
+          },
+          "children": [
+            {
+              "name": "buttons-row",
+              "description": "Row of download buttons",
+              "className": "_buttons_jprh5_161",
+              "styles": {
+                "display": "flex",
+                "flexWrap": "wrap",
+                "justifyContent": "center",
+                "alignItems": "center",
+                "gap": "10px"
+              }
+            },
+            {
+              "name": "macos-button",
+              "description": "macOS download pill button with Apple icon",
+              "tag": "a",
+              "text": "macOS",
+              "href": "https://github.com/UdaraJay/Pile/releases/latest",
+              "icon": "apple-icon",
+              "styles": {
+                "display": "inline-flex",
+                "alignItems": "center",
+                "background": "var(--primary-color) = #e75900",
+                "color": "rgb(255, 255, 255)",
+                "borderRadius": "90px",
+                "padding": "0px 15px 0px 12px",
+                "height": "34px",
+                "lineHeight": "35px",
+                "fontSize": "0.9em",
+                "gap": "10px",
+                "textDecoration": "none",
+                "transition": "all"
+              },
+              "hoverStyles": {
+                "background": "var(--primary-color-hover) = #b14400",
+                "cursor": "pointer"
+              }
+            },
+            {
+              "name": "windows-button",
+              "description": "Windows download pill button with Windows icon",
+              "tag": "a",
+              "text": "Windows",
+              "href": "https://github.com/UdaraJay/Pile/releases/latest",
+              "icon": "windows-icon",
+              "styles": {
+                "display": "inline-flex",
+                "alignItems": "center",
+                "background": "var(--primary-color) = #e75900",
+                "color": "rgb(255, 255, 255)",
+                "borderRadius": "90px",
+                "padding": "0px 15px 0px 12px",
+                "height": "34px",
+                "lineHeight": "35px",
+                "fontSize": "0.9em",
+                "gap": "10px",
+                "textDecoration": "none",
+                "transition": "all"
+              },
+              "hoverStyles": {
+                "background": "var(--primary-color-hover) = #b14400",
+                "cursor": "pointer"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "big-text",
+      "description": "Large white overlay text (scroll-snap section, likely brand name or slogan)",
+      "className": "_big_jprh5_211",
+      "styles": {
+        "fontSize": "7em",
+        "fontWeight": "800",
+        "color": "rgb(255, 255, 255)",
+        "mixBlendMode": "overlay",
+        "margin": "500px 0px 350px",
+        "scrollSnapAlign": "start",
+        "position": "relative",
+        "zIndex": "5"
+      }
+    },
+    {
+      "name": "footer",
+      "description": "Footer section with dark city/square background image",
+      "className": "_footer_jprh5_221",
+      "styles": {
+        "top": "0px",
+        "background": "url('assets/pile/bg-sq.jpg') center center / cover no-repeat",
+        "height": "calc(-40px + 100vh)",
+        "width": "100vw",
+        "position": "relative"
+      }
+    }
+  ],
+  "assets": {
+    "images": [
+      {
+        "src": "https://un.ms/assets/pile/pile-logo.png",
+        "alt": "Pile icon",
+        "naturalWidth": 500,
+        "naturalHeight": 500,
+        "displayWidth": 70,
+        "displayHeight": 70,
+        "localPath": "/images/pile/pile-logo.png",
+        "className": "_logo_jprh5_91"
+      }
+    ],
+    "videos": [
+      {
+        "src": "https://un.ms/assets/pile/sky.mp4",
+        "width": 1920,
+        "height": 1080,
+        "autoplay": false,
+        "loop": true,
+        "muted": true,
+        "localPath": "/images/pile/sky.mp4"
+      }
+    ],
+    "backgroundImages": [
+      {
+        "selector": "._container_jprh5_45",
+        "url": "https://un.ms/assets/pile/sky.png",
+        "localPath": "/images/pile/sky.png",
+        "css": "url('/assets/pile/sky.png') center center / cover no-repeat fixed",
+        "description": "Full-page fixed sky/clouds background"
+      },
+      {
+        "selector": "._cover_jprh5_55",
+        "url": "https://un.ms/assets/pile/bg-clear.png",
+        "localPath": "/images/pile/bg-clear.png",
+        "css": "url('/assets/pile/bg-clear.png') center top / cover no-repeat",
+        "description": "Fixed bottom landscape/nature foreground overlay (max-height 42%)"
+      },
+      {
+        "selector": "._footer_jprh5_221",
+        "url": "https://un.ms/assets/pile/bg-sq.jpg",
+        "localPath": "/images/pile/bg-sq.jpg",
+        "css": "url('assets/pile/bg-sq.jpg') center center / cover no-repeat",
+        "description": "Footer background - city/square image"
+      }
+    ],
+    "svgs": [
+      {
+        "name": "github-icon",
+        "description": "GitHub logo icon (nav, 25x25, rgba(0,0,0,0.2))",
+        "viewBox": "0 0 1024 999",
+        "svgWidth": "1024",
+        "svgHeight": "999",
+        "className": "_icon_jprh5_106",
+        "displayWidth": 25,
+        "displayHeight": 25,
+        "color": "rgba(0, 0, 0, 0.2)",
+        "fill": "none"
+      },
+      {
+        "name": "apple-icon",
+        "description": "Apple logo icon (macOS button, 18x18, white, margin-top: -2px)",
+        "viewBox": "0 0 814 1000",
+        "svgWidth": "814",
+        "svgHeight": "1000",
+        "className": "_icon_jprh5_106",
+        "displayWidth": 18,
+        "displayHeight": 18,
+        "color": "rgb(255, 255, 255)",
+        "fill": "none",
+        "style": "margin-top: -2px"
+      },
+      {
+        "name": "windows-icon",
+        "description": "Windows logo icon (Windows button, 18x18, white)",
+        "viewBox": "0 0 452.986 452.986",
+        "svgWidth": "800px",
+        "svgHeight": "800px",
+        "className": "_icon_jprh5_106",
+        "displayWidth": 18,
+        "displayHeight": 18,
+        "color": "rgb(255, 255, 255)",
+        "fill": "currentcolor"
+      }
+    ],
+    "favicon": {
+      "href": "https://un.ms/assets/pile/pile-logo.png",
+      "sizes": ""
+    },
+    "ogImage": "https://un.ms/assets/pile/pile-logo.png"
+  },
+  "meta": {
+    "viewport": "width=device-width, initial-scale=1",
+    "csrfToken": true,
+    "title": "Pile",
+    "description": "Desktop app for reflective journaling. It's private, integrates with AI, and free.",
+    "ogType": "website",
+    "ogUrl": "https://un.ms/pile",
+    "ogTitle": "Pile",
+    "ogDescription": "Desktop app for reflective journaling. It's private, integrates with AI, and free.",
+    "ogImage": "https://un.ms/assets/pile/pile-logo.png",
+    "twitterCard": "summary_large_image",
+    "twitterSite": "@undotms"
+  },
+  "interactions": [
+    {
+      "type": "hover",
+      "target": "GitHub icon in nav",
+      "description": "Color changes to primary orange (#e75900)",
+      "cssSelector": "._container_jprh5_45 nav ._right_jprh5_99 a ._icon_jprh5_106:hover",
+      "effect": "color: var(--primary-color)"
+    },
+    {
+      "type": "hover",
+      "target": "macOS/Windows download buttons",
+      "description": "Background color darkens from #e75900 to #b14400, cursor becomes pointer",
+      "cssSelector": "._container_jprh5_45 ._downloads_jprh5_151 ._buttons_jprh5_161 a:hover",
+      "effect": "background: var(--primary-color-hover); cursor: pointer"
+    },
+    {
+      "type": "hover",
+      "target": "Unknown button element",
+      "description": "Text decoration underline with dotted style",
+      "cssSelector": "._container_jprh5_45 ._downloads_jprh5_151 ._buttons_jprh5_161 button:hover",
+      "effect": "cursor: pointer; color: var(--text-color)"
+    },
+    {
+      "type": "scroll-snap",
+      "target": "body.is-pile-brochure",
+      "description": "Vertical mandatory scroll snap on body",
+      "css": "scroll-snap-type: y mandatory; overflow-y: hidden; scroll-behavior: smooth"
+    },
+    {
+      "type": "scroll-snap-align",
+      "target": "._main_jprh5_116, ._big_jprh5_211",
+      "description": "Hero and big-text sections snap to start"
+    },
+    {
+      "type": "smooth-scroll",
+      "target": "html.is-pile-brochure",
+      "css": "scroll-behavior: smooth"
+    },
+    {
+      "type": "nprogress",
+      "description": "Progress bar for page navigation (Laravel/Inertia standard)"
+    }
+  ],
+  "responsive": {
+    "390": {
+      "description": "Mobile - narrow layout, buttons wrap",
+      "navHeight": 49
+    },
+    "768": {
+      "description": "Tablet - nav scales, content centers",
+      "navHeight": 49,
+      "scrollHeight": 1024
+    },
+    "1440": {
+      "description": "Full desktop layout",
+      "navHeight": 49,
+      "heroMargin": "10% auto",
+      "heroWidth": 250,
+      "videoHeight": 900
+    }
+  },
+  "stylesheets": [
+    "https://un.ms/build/assets/app-D7OQirYs.css",
+    "https://un.ms/build/assets/Brochure-BpunBM5W.css"
+  ],
+  "scripts": [
+    "https://un.ms/build/assets/app-BZ7fJVvM.js",
+    "https://un.ms/build/assets/Brochure-CsheylGi.js",
+    "https://www.googletagmanager.com/gtag/js?id=G-B6LMEPDYL3"
+  ],
+  "links": {
+    "home": "https://un.ms/",
+    "github": "https://github.com/UdaraJay/Pile",
+    "downloadMacOS": "https://github.com/UdaraJay/Pile/releases/latest",
+    "downloadWindows": "https://github.com/UdaraJay/Pile/releases/latest"
+  },
+  "componentData": {
+    "inertiaComponent": "Pile/Brochure",
+    "backendStack": "Laravel with Ziggy routes, Horizon, Nova, Sanctum, Telescope, Pulse"
+  }
+}

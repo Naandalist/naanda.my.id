@@ -1,0 +1,31 @@
+:root { --background-color: rgba(247, 250, 251); --background-color-secondary: #ceebff; --background-color-tertiary: #92d2d8; --background-translucent: rgba(0, 0, 0, .06); --background-translucent-hover: rgba(0, 0, 0, .1); --text-color: rgba(0, 0, 0, .85); --text-color-secondary: rgba(0, 0, 0, .6); --border-color: rgba(0, 0, 0, .25); --primary-color: #e75900; --primary-color-hover: #b14400; --secondary-color: #004491; }
+html.is-pile-brochure { scroll-behavior: smooth; }
+body.is-pile-brochure { scroll-snap-type: y mandatory; overflow-y: hidden; scroll-behavior: smooth; }
+._loading_jprh5_26 { display: flex; justify-content: center; align-items: center; flex-direction: column; height: 100vh; background: rgb(255, 255, 255); gap: 25px; position: relative; z-index: 100; }
+._loading_jprh5_26 ._text_jprh5_37 { color: rgb(119, 119, 119); width: 170px; line-height: 1; margin-top: 1px; text-align: center; }
+._container_jprh5_45 { display: flex; flex-direction: column; min-height: 100vh; background: url("/assets/pile/sky.png") center center / cover no-repeat fixed; position: relative; }
+._container_jprh5_45 ._cover_jprh5_55 { position: fixed; bottom: 0px; left: 0px; width: 100%; height: 100%; max-height: 42%; background: url("/assets/pile/bg-clear.png") center top / cover no-repeat; z-index: 60; pointer-events: none; }
+._container_jprh5_45 ._overlay_jprh5_67 { position: fixed; pointer-events: none; top: 0px; left: 0px; width: 100%; height: 100%; background: linear-gradient(rgba(247, 250, 251, 0.9) 20%, rgba(0, 0, 0, 0) 70%); }
+._container_jprh5_45 nav { display: flex; justify-content: space-between; align-items: center; padding: 12px 17px; position: relative; color: rgb(160, 172, 185); }
+._container_jprh5_45 nav ._left_jprh5_84 { display: flex; justify-content: center; align-items: center; line-height: 1; font-size: 16px; }
+._container_jprh5_45 nav ._left_jprh5_84 ._logo_jprh5_91 { display: flex; margin: 0px auto; height: 22px; width: 36px; background: rgba(0, 0, 0, 0.15); border-radius: 0px 90px 90px 0px; }
+._container_jprh5_45 nav ._right_jprh5_99 { display: flex; justify-content: space-between; align-items: center; gap: 10px; line-height: 1; }
+._container_jprh5_45 nav ._right_jprh5_99 a ._icon_jprh5_106 { height: 25px; width: 25px; color: rgba(0, 0, 0, 0.2); border-radius: 0px 90px 90px 0px; opacity: 0.95; }
+._container_jprh5_45 nav ._right_jprh5_99 a ._icon_jprh5_106:hover { color: var(--primary-color); }
+._container_jprh5_45 ._main_jprh5_116 { border-radius: 17px; text-align: center; scroll-snap-align: start; position: relative; z-index: 10; margin: 10% auto; }
+._container_jprh5_45 ._main_jprh5_116 ._logo_jprh5_91 { height: 70px; width: 70px; margin: 0px auto; }
+._container_jprh5_45 ._main_jprh5_116 h1, ._container_jprh5_45 ._main_jprh5_116 h2 { font-weight: 400; }
+._container_jprh5_45 ._main_jprh5_116 h1 { font-size: 1.5em; font-weight: 500; margin: 10px 0px 20px; text-align: center; }
+._container_jprh5_45 ._main_jprh5_116 h1 div { text-transform: uppercase; font-size: 12px; margin: 6px 0px 0px; color: var(--text-color-secondary); }
+._container_jprh5_45 ._main_jprh5_116 h2 { margin: 0px auto; max-width: 250px; line-height: 1.5; font-size: 1rem; }
+._container_jprh5_45 ._downloads_jprh5_151 { margin: 20px auto; text-align: center; max-width: 300px; }
+._container_jprh5_45 ._downloads_jprh5_151 ._heading_jprh5_156 { margin: 0px 0px 14px; font-size: 0.85em; color: var(--text-color-secondary); }
+._container_jprh5_45 ._downloads_jprh5_151 ._buttons_jprh5_161 { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; }
+._container_jprh5_45 ._downloads_jprh5_151 ._buttons_jprh5_161 a { display: inline-flex; align-items: center; background: var(--primary-color); color: rgb(255, 255, 255); border-radius: 90px; padding: 0px 15px 0px 12px; height: 34px; line-height: 35px; font-size: 0.9em; gap: 10px; text-decoration: none; }
+._container_jprh5_45 ._downloads_jprh5_151 ._buttons_jprh5_161 a ._icon_jprh5_106 { height: 18px; width: 18px; }
+._container_jprh5_45 ._downloads_jprh5_151 ._buttons_jprh5_161 a:hover { cursor: pointer; background: var(--primary-color-hover); }
+._container_jprh5_45 ._downloads_jprh5_151 ._buttons_jprh5_161 ._text_jprh5_37 { font-size: 0.9em; max-width: 300px; line-height: 1.4; color: var(--text-color-secondary); }
+._container_jprh5_45 ._downloads_jprh5_151 ._buttons_jprh5_161 button { text-align: center; font-size: 0.9em; color: var(--text-color-secondary); text-decoration-line: underline; text-decoration-thickness: initial; text-underline-offset: 4px; text-decoration-style: dotted; text-decoration-color: var(--border-color); }
+._container_jprh5_45 ._downloads_jprh5_151 ._buttons_jprh5_161 button:hover { cursor: pointer; color: var(--text-color); }
+._container_jprh5_45 ._big_jprh5_211 { font-size: 7em; font-weight: 800; color: rgb(255, 255, 255); mix-blend-mode: overlay; margin: 500px 0px 350px; scroll-snap-align: start; position: relative; z-index: 5; }
+._container_jprh5_45 ._footer_jprh5_221 { top: 0px; background: url("assets/pile/bg-sq.jpg") center center / cover no-repeat; height: calc(-40px + 100vh); width: 100vw; position: relative; }
