@@ -8,28 +8,18 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Pile / UNMS",
-  description: "Desktop app for reflective journaling. It's private, integrates with AI, and free.",
+  title: "Naanda",
+  description: "A personal page. This sentence is a placeholder.",
   openGraph: {
-    title: "Pile",
-    description: "Desktop app for reflective journaling. It's private, integrates with AI, and free.",
-    url: "https://un.ms/pile",
-    siteName: "UNMS",
+    title: "Naanda",
+    description: "A personal page. This sentence is a placeholder.",
+    siteName: "Naanda",
     type: "website",
-    images: [
-      {
-        url: "https://un.ms/assets/pile/pile-logo.png",
-        width: 500,
-        height: 500,
-        alt: "Pile",
-      },
-    ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Pile",
-    description: "Desktop app for reflective journaling. It's private, integrates with AI, and free.",
-    images: ["https://un.ms/assets/pile/pile-logo.png"],
+    card: "summary",
+    title: "Naanda",
+    description: "A personal page. This sentence is a placeholder.",
   },
   icons: {
     icon: "/sites/un.ms-9e73fc9e/pile-7b2b2b3f/pile-logo.png",

@@ -2,9 +2,11 @@
 
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-import { AppleIcon, WindowsIcon, GitHubIcon } from "@/components/sites/un.ms-9e73fc9e/pile-7b2b2b3f/icons";
+import { GitHubIcon, LinkedInIcon } from "@/components/sites/un.ms-9e73fc9e/pile-7b2b2b3f/icons";
 
 const SITE_BASE = "/sites/un.ms-9e73fc9e/pile-7b2b2b3f";
+const LINKEDIN_URL = "https://www.linkedin.com/";
+const GITHUB_URL = "https://github.com/";
 
 function SmoothVideo({ src }: { src: string }) {
   const aRef = useRef<HTMLVideoElement>(null);
@@ -109,25 +111,6 @@ export default function Home() {
       {/* Scrollable content */}
       <div className="relative z-10 min-h-screen">
         {/* Navigation */}
-        <nav
-          className="relative flex items-center justify-between px-[17px] py-3"
-          style={{ height: 49, color: "rgb(160,172,185)" }}
-        >
-          <div
-            className="bg-black/15"
-            style={{ width: 36, height: 22, borderRadius: "0 90px 90px 0" }}
-          />
-          <a
-            href="https://github.com/UdaraJay/Pile"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block opacity-95 transition-colors hover:text-[#e75900]"
-            style={{ color: "rgba(0,0,0,0.2)" }}
-          >
-            <GitHubIcon className="h-[25px] w-[25px]" />
-          </a>
-        </nav>
-
         {/* Hero */}
         <section
           className="relative mx-auto max-w-[250px] text-center"
@@ -135,7 +118,7 @@ export default function Home() {
         >
           <Image
             src={`${SITE_BASE}/pile-logo.png`}
-            alt="Pile"
+            alt="Naanda"
             width={70}
             height={70}
             className="mx-auto block"
@@ -149,7 +132,7 @@ export default function Home() {
               color: "rgba(0,0,0,0.85)",
             }}
           >
-            Pile
+            Naanda
           </h1>
           <h2
             className="mx-auto mb-5 max-w-[250px] font-normal opacity-80"
@@ -159,30 +142,33 @@ export default function Home() {
               color: "rgb(11,11,11)",
             }}
           >
-            Desktop app for reflective journaling. It&apos;s private, integrates with
-            AI, and free.
+            A personal page. This sentence is a placeholder.
           </h2>
           <div className="mx-auto mt-5 max-w-[300px]">
             <div className="flex flex-wrap items-center justify-center gap-2.5">
               <a
-                href="https://github.com/UdaraJay/Pile/releases/latest"
+                href={LINKEDIN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex h-[34px] items-center gap-2.5 rounded-full px-3 text-[0.9em] text-white no-underline transition-colors"
                 style={{ backgroundColor: "#e75900", paddingLeft: 12, paddingRight: 15 }}
                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#b14400")}
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#e75900")}
               >
-                <AppleIcon className="mt-[-2px] h-[18px] w-[18px]" />
-                macOS
+                <LinkedInIcon className="h-[18px] w-[18px]" />
+                LinkedIn
               </a>
               <a
-                href="https://github.com/UdaraJay/Pile/releases/latest"
+                href={GITHUB_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex h-[34px] items-center gap-2.5 rounded-full px-3 text-[0.9em] text-white no-underline transition-colors"
                 style={{ backgroundColor: "#e75900", paddingLeft: 12, paddingRight: 15 }}
                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#b14400")}
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#e75900")}
               >
-                <WindowsIcon className="h-[18px] w-[18px]" />
-                Windows
+                <GitHubIcon className="h-[18px] w-[18px]" />
+                GitHub
               </a>
             </div>
           </div>
@@ -201,7 +187,7 @@ export default function Home() {
               margin: "500px 0 350px",
             }}
           >
-            Pile
+            Naanda
           </p>
         </section>
 
