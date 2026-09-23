@@ -142,14 +142,16 @@
   }
 }
 
-html.is-pile-brochure {
-  scroll-behavior: smooth;
+html.is-pile-brochure,
+body.is-pile-brochure {
+  overflow: hidden;
+  overscroll-behavior: none;
 }
 
 body.is-pile-brochure {
-  height: 100vh;
-  scroll-snap-type: y mandatory;
-  overflow-y: hidden;
-  scroll-behavior: smooth;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   background: url("/sites/un.ms-9e73fc9e/pile-7b2b2b3f/sky.png") center center / cover no-repeat fixed;
 }
