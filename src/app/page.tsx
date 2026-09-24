@@ -6,21 +6,8 @@ import { useEffect, useState } from "react";
 import { BackgroundVideo } from "@/components/hero/background-video";
 import { HeroSkeleton } from "@/components/hero/hero-skeleton";
 import { SocialLinks } from "@/components/hero/social-links";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { heroConfig, siteConfig } from "@/lib/site-config";
-
-function useReducedMotion() {
-  const [reducedMotion, setReducedMotion] = useState(false);
-
-  useEffect(() => {
-    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setReducedMotion(query.matches);
-    update();
-    query.addEventListener("change", update);
-    return () => query.removeEventListener("change", update);
-  }, []);
-
-  return reducedMotion;
-}
 
 export default function Home() {
   const [videoReady, setVideoReady] = useState(false);
