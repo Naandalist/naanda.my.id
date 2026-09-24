@@ -23,8 +23,10 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "test:smoke": "node scripts/visual-smoke.mjs",
-    "check": "bun run lint && bun run typecheck && bun run build"
+    "check": "bun run format:check && bun run lint && bun run typecheck && bun run build"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -45,6 +47,8 @@
     "eslint-config-next": "16.3.5",
     "playwright": "^1.63.0",
     "pngjs": "^7.0.0",
+    "prettier": "3.9.9",
+    "prettier-plugin-tailwindcss": "0.8.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   },

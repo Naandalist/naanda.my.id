@@ -7,12 +7,7 @@ type ButtonLinkProps = Omit<ComponentPropsWithoutRef<"a">, "href"> & {
   external?: boolean;
 };
 
-export function ButtonLink({
-  href,
-  external = false,
-  className,
-  ...props
-}: ButtonLinkProps) {
+export function ButtonLink({ href, external = false, className, ...props }: ButtonLinkProps) {
   return (
     <a
       href={href}

@@ -30,7 +30,10 @@ export default function Home() {
   useEffect(() => {
     const image = document.querySelector('img[alt="Naanda"]');
     const loaded = image instanceof HTMLImageElement && image.complete && image.naturalWidth > 0;
-    const timer = window.setTimeout(() => setLogoReady(true), loaded ? 0 : heroConfig.skeletonCapMs);
+    const timer = window.setTimeout(
+      () => setLogoReady(true),
+      loaded ? 0 : heroConfig.skeletonCapMs,
+    );
     return () => window.clearTimeout(timer);
   }, []);
 
@@ -51,15 +54,39 @@ export default function Home() {
       {showStill ? (
         <div className="hero-still" style={{ backgroundImage: `url(${basePath}/bg-sq.jpg)` }} />
       ) : (
-        <BackgroundVideo src={`${basePath}/sky.mp4`} onReady={() => setVideoReady(true)} onUnavailable={() => setUseStill(true)} />
+        <BackgroundVideo
+          src={`${basePath}/sky.mp4`}
+          onReady={() => setVideoReady(true)}
+          onUnavailable={() => setUseStill(true)}
+        />
       )}
-      {!showStill && <><div className="hero-foreground" style={{ backgroundImage: `url(${basePath}/bg-clear.webp)` }} /><div className="hero-gradient" /></>}
-      <main className="hero-page"><section className="hero-content" aria-labelledby="hero-title">
-        <Image src={`${basePath}/pile-logo.png`} alt="Naanda" width={70} height={70} priority onLoad={(event) => { if (event.currentTarget.naturalWidth > 0) setLogoReady(true); }} onError={() => setLogoReady(true)} />
-        <h1 id="hero-title">{siteConfig.name}</h1>
-        <p>{siteConfig.description}</p>
-        <SocialLinks />
-      </section></main>
+      {!showStill && (
+        <>
+          <div
+            className="hero-foreground"
+            style={{ backgroundImage: `url(${basePath}/bg-clear.webp)` }}
+          />
+          <div className="hero-gradient" />
+        </>
+      )}
+      <main className="hero-page">
+        <section className="hero-content" aria-labelledby="hero-title">
+          <Image
+            src={`${basePath}/pile-logo.png`}
+            alt="Naanda"
+            width={70}
+            height={70}
+            priority
+            onLoad={(event) => {
+              if (event.currentTarget.naturalWidth > 0) setLogoReady(true);
+            }}
+            onError={() => setLogoReady(true)}
+          />
+          <h1 id="hero-title">{siteConfig.name}</h1>
+          <p>{siteConfig.description}</p>
+          <SocialLinks />
+        </section>
+      </main>
       {showSkeleton && <HeroSkeleton fading={logoReady} />}
     </>
   );
