@@ -23,6 +23,7 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
+    "test:smoke": "node scripts/visual-smoke.mjs",
     "check": "bun run lint && bun run typecheck && bun run build"
   },
   "dependencies": {
