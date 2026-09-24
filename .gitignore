@@ -23,7 +23,9 @@ yarn-error.log*
 
 # IDE
 .idea/
-.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tailwind.css-data.json
 *.swp
 *.swo
 

@@ -1,4 +1,6 @@
-export function LinkedInIcon({ className }: { className?: string }) {
+type SocialIconProps = { className?: string };
+
+export function LinkedInIcon({ className }: SocialIconProps) {
   return (
     <svg
       viewBox="0 0 448 512"
@@ -11,7 +13,7 @@ export function LinkedInIcon({ className }: { className?: string }) {
   );
 }
 
-export function GitHubIcon({ className }: { className?: string }) {
+export function GitHubIcon({ className }: SocialIconProps) {
   return (
     <svg
       viewBox="0 0 496 512"
