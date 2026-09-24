@@ -1,4 +1,4 @@
-import { GitHubIcon, LinkedInIcon } from "@/components/sites/un.ms-9e73fc9e/pile-7b2b2b3f/icons";
+import { GitHubIcon, LinkedInIcon } from "@/components/hero/social-icons";
 import { siteConfig } from "@/lib/site-config";
 
 const icons = { LinkedIn: LinkedInIcon, GitHub: GitHubIcon };
