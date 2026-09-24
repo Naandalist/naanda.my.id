@@ -216,10 +216,10 @@ body.is-pile-brochure {
 .hero-content p { max-width: 250px; margin: 0 0 20px; color: rgb(11 11 11); font-size: 1rem; font-weight: 400; line-height: 1.5; opacity: 0.8; }
 
 .hero-social-links { display: flex; max-width: 300px; margin-top: 20px; flex-wrap: wrap; justify-content: center; gap: 10px; }
-.hero-social-links a { display: inline-flex; height: 34px; align-items: center; gap: 10px; border-radius: 9999px; padding: 0 15px 0 12px; background: var(--pile-primary); color: white; font-size: .9em; text-decoration: none; transition: background-color 150ms; }
-.hero-social-links a:hover { background: var(--pile-primary-hover); }
-.hero-social-links a:focus-visible { outline: 3px solid var(--ring); outline-offset: 3px; }
-.hero-social-links svg { width: 18px; height: 18px; }
+.button-link { display: inline-flex; height: 34px; align-items: center; gap: 10px; border-radius: 9999px; padding: 0 15px 0 12px; background: var(--pile-primary); color: white; font-size: .9em; text-decoration: none; transition: background-color 150ms; }
+.button-link:hover { background: var(--pile-primary-hover); }
+.button-link:focus-visible { outline: 3px solid var(--ring); outline-offset: 3px; }
+.button-link > svg { width: 18px; height: 18px; }
 
 .hero-skeleton { position: fixed; z-index: 80; inset: 0; display: flex; min-height: 100dvh; align-items: center; justify-content: center; padding-bottom: 18vh; background: linear-gradient(180deg, #e8f2f8 0%, #c5dced 55%, #9ec3db 100%); transition: opacity 500ms; }
 .hero-skeleton__content { display: flex; width: 250px; flex-direction: column; align-items: center; }
